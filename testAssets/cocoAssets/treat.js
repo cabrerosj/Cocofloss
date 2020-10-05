@@ -5,7 +5,7 @@ module.exports = [
         count: ''
     },
     {
-        set: 'Watermelon', 
+        set: 'Dark Chocolate', 
         flavor: '',
         count: 'two'
     },

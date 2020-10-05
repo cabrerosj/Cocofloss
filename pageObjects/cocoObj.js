@@ -1,15 +1,21 @@
 var cocoCommands = {
+    add: function (num1, num2, num3) {
+        this
+        return num1 + num2 + num3
+    },
     menuItems: function (data) {
         this
             .click(data.menu)
             .verify.urlEquals(data.url)
     },
+
     shopSubItems: function (data) {
         this
             .moveToElement('@shopMenu', 5, 5)
             .click(data.link)
             .verify.urlEquals(data.url)
     },
+
     productContents: function (data) {
         this
             .moveToElement('@shopMenu', 5, 5)
@@ -24,12 +30,14 @@ var cocoCommands = {
             .verify.elementPresent('@prodQuantity')
             .verify.elementPresent('@prodCart')
     },
+
     treatCart: function (data) {
         //For 4-Piece Set
         var itemName = 'cocofloss ' + data.set + ' set'
         //For Watermelon Flavor
         // var watermelonName = 'Limited-Edition Summer Watermelon Cocofloss'       //**Flavor No Longer Available */
         //For 3-Piece
+        var darkChocName = 'DARK CHOCOLATE COCOFLOSS'
         var itemName2 = 'cocofloss ' + data.set
         this
             .getLocationInView('@allReviews')
@@ -42,7 +50,9 @@ var cocoCommands = {
             this
                 .expect.element('.p4.cart-item__details__description').text.to.equal(data.flavor + ' Fragrances')
             this
+                .pause(1000)
                 .click('@remove')
+                .pause(1000)
                 .click('@closeCart')
         }
         else if (data.set === '4-Piece' && data.flavor === 'Strawberry') {
@@ -54,7 +64,9 @@ var cocoCommands = {
             this
                 .expect.element('.p4.cart-item__details__description').text.to.equal(data.flavor + ' Fragrances')
             this
+                .pause(1000)
                 .click('@remove')
+                .pause(1000)
                 .click('@closeCart')
         }
         else if (data.set === '4-Piece' && data.flavor === 'Orange') {
@@ -66,18 +78,20 @@ var cocoCommands = {
             this
                 .expect.element('.p4.cart-item__details__description').text.to.equal(data.flavor + ' Fragrances')
             this
+                .pause(1000)
                 .click('@remove')
+                .pause(1000)
                 .click('@closeCart')
         }
 
-//** FLAVOR NO LONGER AVAILABLE */
+        //** FLAVOR NO LONGER AVAILABLE */
 
         // else if (data.set === 'Watermelon' && data.count === 'one') {
         //     this
         //         .click('@selectQuantity')
         //         .click(`@${data.count}Quantity`)
         //         .click('@treatAddCart3')
-        //         .expect.element('.label-3.cart-item__details__heading').text.to.equal(watermelonName.toUpperCase())
+        //         .expect.element('.label-3.cart-item__details__heading').text.to.equal(darkChocName)
         //     this
         //         .expect.element('.p4.cart-item__details__description').text.to.equal('Single')
         //     this
@@ -89,7 +103,7 @@ var cocoCommands = {
         //         .click('@selectQuantity')
         //         .click(`@${data.count}Quantity`)
         //         .click('@treatAddCart3')
-        //         .expect.element('.label-3.cart-item__details__heading').text.to.equal(watermelonName.toUpperCase())
+        //         .expect.element('.label-3.cart-item__details__heading').text.to.equal(darkChocName)
         //     this
         //         .expect.element('.p4.cart-item__details__description').text.to.equal('2-Piece Set')
         //     this
@@ -101,7 +115,7 @@ var cocoCommands = {
         //         .click('@selectQuantity')
         //         .click(`@${data.count}Quantity`)
         //         .click('@treatAddCart3')
-        //         .expect.element('.label-3.cart-item__details__heading').text.to.equal(watermelonName.toUpperCase())
+        //         .expect.element('.label-3.cart-item__details__heading').text.to.equal(darkChocName)
         //     this
         //         .expect.element('.p4.cart-item__details__description').text.to.equal('3-Piece Set')
         //     this
@@ -112,6 +126,50 @@ var cocoCommands = {
 
 
 
+
+
+        else if (data.set === 'Dark Chocolate' && data.count === 'one') {
+            this
+                .click('@selectQuantity')
+                .click(`@${data.count}Quantity`)
+                .click('@treatAddCart3')
+                .expect.element('.label-3.cart-item__details__heading').text.to.equal(darkChocName)
+            this
+                .expect.element('.p4.cart-item__details__description').text.to.equal('Single')
+            this
+                .pause(1000)
+                .click('@remove')
+                .pause(1000)
+                .click('@closeCart')
+        }
+        else if (data.set === 'Dark Chocolate' && data.count === 'two') {
+            this
+                .click('@selectQuantity')
+                .click(`@${data.count}Quantity`)
+                .click('@treatAddCart3')
+                .expect.element('.label-3.cart-item__details__heading').text.to.equal(darkChocName)
+            this
+                .expect.element('.p4.cart-item__details__description').text.to.equal('2-Piece Set')
+            this
+                .pause(1000)
+                .click('@remove')
+                .pause(1000)
+                .click('@closeCart')
+        }
+        else if (data.set === 'Dark Chocolate' && data.count === 'three') {
+            this
+                .click('@selectQuantity')
+                .click(`@${data.count}Quantity`)
+                .click('@treatAddCart3')
+                .expect.element('.label-3.cart-item__details__heading').text.to.equal(darkChocName)
+            this
+                .expect.element('.p4.cart-item__details__description').text.to.equal('3-Piece Set')
+            this
+                .pause(1000)
+                .click('@remove')
+                .pause(1000)
+                .click('@closeCart')
+        }
         else if (data.set === '3-Piece' && data.flavor === 'Mixed') {
             this
                 .click('@treatFragrance2')
@@ -121,7 +179,9 @@ var cocoCommands = {
             this
                 .expect.element('.p4.cart-item__details__description').text.to.equal('Mixed fruits')
             this
+                .pause(1000)
                 .click('@remove')
+                .pause(1000)
                 .click('@closeCart')
         }
         else if (data.set === '3-Piece' && data.flavor === 'Strawberry') {
@@ -133,7 +193,9 @@ var cocoCommands = {
             this
                 .expect.element('.p4.cart-item__details__description').text.to.equal('Strawberries')
             this
+                .pause(1000)
                 .click('@remove')
+                .pause(1000)
                 .click('@closeCart')
         }
         else if (data.set === '3-Piece' && data.flavor === 'Orange') {
@@ -145,11 +207,14 @@ var cocoCommands = {
             this
                 .expect.element('.p4.cart-item__details__description').text.to.equal('Cara cara orange')
             this
+                .pause(1000)
                 .click('@remove')
+                .pause(1000)
                 .click('@closeCart')
             return this
         }
     },
+
     reviewPopup: function () {
         this
             .click('@star')
@@ -168,8 +233,138 @@ var cocoCommands = {
             .verify.elementPresent('@reviewEmail')
             .click('@closeReview')
         return this
+    },
+
+    cuSisters: function () {
+        this
+            .moveToElement('@ourStoryBtn', 5, 5)
+            .verify.visible('@cuTitle')
+            .verify.visible('@cuContent')
+            .verify.visible('@ourStoryBtn')
+            .click('@ourStoryBtn')
+            .verify.urlEquals('https://cocofloss.com/pages/our-story')
+        return this
+    },
+
+    getCocofloss: function () {
+        this
+            .getLocationInView('@footer')
+            .verify.elementPresent('@igSectionTitle')
+            .verify.elementPresent('@igGallery')
+        return this
+    },
+
+    footerVisibility: function () {
+        this
+            .getLocationInView('@footer')
+            .verify.elementPresent('@footer')
+            .verify.visible('@joinTeamTitle')
+            .verify.visible('@joinTeamContent')
+            .verify.visible('@newsletterInput')
+    },
+
+    footerLinks: function (data) {
+        this
+            .getLocationInView('@footer')
+            .click(data.footer)
+            .verify.urlEquals(data.url)
+            .navigate('https://cocofloss.com/')
+        return this
+    },
+
+    socialMedia: function () {
+        this
+            .getLocationInView('@footer')
+            .assert.attributeContains('@facebook', 'href', 'http://www.facebook.com/lovecocofloss')
+            .assert.attributeContains('@instagram', 'href', 'http://instagram.com/getcocofloss')
+            .assert.attributeContains('@email', 'href', 'mailto:help@cocofloss.com')
+        return this
+    },
+    checkout: function (data) {
+        this
+
+            //First item added to cart
+            .click('@treatFragrance1')
+            .pause(1000)
+            .click('@mixed')
+            .pause(1000)
+            .click('@treatAddCart1')
+            .pause(1000)
+            .click('@closeCart')
+            .pause(1000)
+
+            //Second item added to cart
+            .click('@selectQuantity')
+            .pause(1000)
+            .click('@twoQuantity')
+            .pause(1000)
+            .click('@treatAddCart3')
+            .pause(1000)
+            .click('@closeCart')
+
+            //Third item added to cart
+            .click('@treatFragrance2')
+            .pause(1000)
+            .click('@orange2')
+            .pause(1000)
+            .click('@treatAddCart2')
+            .pause(1000)
+            //Checkout
+            .click('@checkout')
+            .verify.urlEquals('https://cocofloss.com/cart')
+            .verify.visible('#note')
+            .pause(1000)
+
+            //Verify then Checkout
+            .click('@checkoutCheckout')
+
+            //Contact and Shipping Info Page
+            .verify.elementPresent('@emailHolder')
+            .verify.elementPresent('@firstNameHolder')
+            .verify.elementPresent('@lastNameHolder')
+            .verify.elementPresent('@addressHolder')
+            .verify.elementPresent('@address2Holder')
+            .verify.elementPresent('@cityHolder')
+            .verify.elementPresent('@countryDropdown')
+            .verify.elementPresent('@stateDropdown')
+            .verify.elementPresent('@zipHolder')
+            .verify.elementPresent('@codeHolder')
+
+            //Information Input
+            .setValue('@emailHolder', data.email)
+            .pause(500)
+            .setValue('@firstNameHolder', data.firstName)
+            .pause(500)
+            .setValue('@lastNameHolder', data.lastName)
+            .pause(1000)
+            .setValue('@addressHolder', data.address1)
+            .pause(2000)
+            .api.keys(this.api.Keys.ENTER)
+            .pause(1000)
+        this
+            .setValue('@address2Holder', data.address2)
+            .click('#continue_button')
+
+            //Shipping Options
+            .assert.containsText('@confirmationEmail', data.email)
+            .pause(1000)
+            .assert.containsText('@confirmationAddress', data.address1 + ', ' + data.address2 + ', Cupertino CA 95014, United States')
+            .pause(1000)
+            .verify.elementPresent('@shippingOptions')
+            .pause(1000)
+            .click('#continue_button')
+            .pause(1000)
+
+            //Payment Informtion
+            .assert.containsText('@confirmationEmail', data.email)
+            .assert.containsText('@confirmationAddress', data.address1 + ', ' + data.address2 + ', Cupertino CA 95014, United States')
+            .pause(1000)
+            .verify.elementPresent('@payPal')
+            .verify.elementPresent('@amazonPay')
+        return this
     }
 }
+
 
 module.exports = {
     url: 'https://cocofloss.com/',
@@ -268,7 +463,7 @@ module.exports = {
             selector: '//*[text()="Fresh Coconut"]',
             locateStrategy: 'xpath'
         },
-        
+
         pureStrawberry: {
             selector: '//*[text()="Pure Strawberry"]',
             locateStrategy: 'xpath'
@@ -305,16 +500,13 @@ module.exports = {
         strawberry: '[for="swatch-0-pure-strawberry-273101094939"]',
         orange: '[for="swatch-0-cara-cara-orange-273101094939"]',
 
-        treatAddCart1: {
-            selector: '(//*[text()="Add to Cart"])[1]',
-            locateStrategy: 'xpath'
-        },
+
 
 
         //** FLAVOR NO LONGER AVAILABLE*/
 
 
-        
+
         // //Watermelon
         // selectQuantity: {
         //     selector: '//*[text()="Select A Quantity"]',
@@ -334,6 +526,17 @@ module.exports = {
 
 
 
+        //Dark Chocolate
+        selectQuantity: {
+            selector: '//*[text()="Select A set"]',
+            locateStrategy: 'xpath'
+        },
+
+        //Dark Chocolate Quantities
+        oneQuantity: '[data-value="Single"]',
+        twoQuantity: '[data-value="2-Piece Set"]',
+        threeQuantity: '[data-value="3-Piece Set"]',
+
         //3-Piece Set
         treatFragrance2: {
             selector: '(//*[text()="Select A Fragrance"])[2]',
@@ -345,6 +548,15 @@ module.exports = {
         orange2: '[for="swatch-0-cara-cara-orange-246013624347"]',
         mixed2: '[for="swatch-0-mixed-fruits-246013624347"]',
 
+        //Treat Section Add to Cart Buttons
+        treatAddCart1: {
+            selector: '(//*[text()="Add to Cart"])[1]',
+            locateStrategy: 'xpath'
+        },
+        treatAddCart2: {
+            selector: '(//*[text()="Add to Cart"])[2]',
+            locateStrategy: 'xpath'
+        },
         treatAddCart3: {
             selector: '(//*[text()="Add to Cart"])[3]',
             locateStrategy: 'xpath'
@@ -374,6 +586,125 @@ module.exports = {
         closeReview: {
             selector: '(//*[@class="yotpo-icon yotpo-icon-cross"])[1]',
             locateStrategy: 'xpath'
-        }
+        },
+
+        //Meet The Cu Sisters
+        cuTitle: '.landing-sister__title.h2.mb1',
+        cuContent: '.landing-sister__text.text-max.mha.p1.mb2',
+        ourStoryBtn: {
+            selector: '(//*[@href="/pages/our-story"])[1]',
+            locateStrategy: 'xpath'
+        },
+
+        //@COCOFLOSS
+        igSectionTitle: '.h2.landing-social__title.mb1.align-c',
+        igGallery: '.landing-social__grid',
+
+        //Footer
+        footer: '#shopify-section-landing-footer',
+        joinTeamTitle: {
+            selector: '//*[text() = "Join the floss team"]',
+            locateStrategy: 'xpath'
+        },
+        joinTeamContent: {
+            selector: '//*[text() = "Keep in touch for special offers and self-care tips for everyday bliss."]',
+            locateStrategy: 'xpath'
+        },
+        newsletterInput: '.newsletter',
+
+        //Footer Links
+        blogFooter: {
+            selector: '//*[text()="Our Blog"]',
+            locateStrategy: 'xpath'
+        },
+        ourStoryFooter: {
+            selector: '(//*[text()="Our Story"])[2]',
+            locateStrategy: 'xpath'
+        },
+        pressFooter: {
+            selector: '//*[text()="Press"]',
+            locateStrategy: 'xpath'
+        },
+        dentalProsFooter: {
+            selector: '//*[text()="Dental Pros"]',
+            locateStrategy: 'xpath'
+        },
+        manageMySubscriptionFooter: {
+            selector: '//*[text()="Manage My Subscription"]',
+            locateStrategy: 'xpath'
+        },
+        storeLocatorFooter: {
+            selector: '//*[text()="Store Locator"]',
+            locateStrategy: 'xpath'
+        },
+        jobsFooter: {
+            selector: '//*[text()="Jobs"]',
+            locateStrategy: 'xpath'
+        },
+        helpFaqFooter: {
+            selector: '//*[text()="Help & FAQ"]',
+            locateStrategy: 'xpath'
+        },
+
+        //Footer Social Media Links
+        facebook: '.icon-facebook',
+        instagram: '.icon-instagram',
+        email: '.icon-mail',
+
+        //Cart Items
+        item1: '.p-small-2.cart-item__total-inner.align-r',
+        item2: {
+            selector: '(//*[@class="p-small-2 cart-item__total-inner align-r"])[2]',
+            locateStrategy: 'xpath'
+        },
+        item3: {
+            selector: '(//*[@class="p-small-2 cart-item__total-inner align-r"])[3]',
+            locateStrategy: 'xpath'
+        },
+        subTotal: '.p-medium2',
+
+        //Checkout Button
+        checkout: {
+            selector: '//*[text()="Checkout"]',
+            locateStrategy: 'xpath'
+        },
+        checkoutCheckout: {
+            selector: '(//*[@type="submit"])[1]',
+            locateStrategy: 'xpath'
+        },
+
+        emailHolder: '[placeholder="Email"]',
+        firstNameHolder: '[placeholder="First name (optional)"]',
+        lastNameHolder: '[placeholder="Last name"]',
+        addressHolder: '[placeholder="Address"]',
+        address2Holder: '[placeholder="Apartment, suite, etc. (optional)"]',
+        cityHolder: '[placeholder="City"]',
+
+        countryDropdown: {
+            selector: '(//*[@class="field__input-wrapper field__input-wrapper--select"])[1]',
+            locateStrategy: 'xpath'
+        },
+        stateDropdown: {
+            selector: '(//*[@class="field__input-wrapper field__input-wrapper--select"])[2]',
+            locateStrategy: 'xpath'
+        },
+
+        zipHolder: '[placeholder="ZIP code"]',
+
+        codeHolder: '[placeholder="Gift card or discount code"]',
+
+        confirmationEmail: '[dir="ltr"]',
+        confirmationAddress: '.address.address--tight',
+
+        shippingOptions: {
+            selector: '(//*[@class="content-box"])[2]',
+            locateStrategy: 'xpath'
+        },
+
+        selectedShipping: '.radio__label__primary',
+
+        payPal: '[alt="PayPal"]',
+        amazonPay: '[alt="Amazon Pay"]'
+
     }
 }
