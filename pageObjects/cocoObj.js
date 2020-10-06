@@ -12,6 +12,7 @@ var cocoCommands = {
     shopSubItems: function (data) {
         this
             .moveToElement('@shopMenu', 5, 5)
+            .pause(1000)
             .click(data.link)
             .verify.urlEquals(data.url)
     },
@@ -362,6 +363,14 @@ var cocoCommands = {
             .verify.elementPresent('@payPal')
             .verify.elementPresent('@amazonPay')
         return this
+    },
+
+    contactSection: function () {
+        this
+        .getLocationInView('@footer')
+        .assert.elementPresent('@contactTitle')
+        .assert.attributeContains('@marketingEmail', 'href', 'mailto:marketing@cocofloss.com')
+        .assert.attributeContains('@wholeSaleEmail', 'href', 'mailto:wholesale@cocofloss.com')
     }
 }
 
@@ -704,7 +713,14 @@ module.exports = {
         selectedShipping: '.radio__label__primary',
 
         payPal: '[alt="PayPal"]',
-        amazonPay: '[alt="Amazon Pay"]'
+        amazonPay: '[alt="Amazon Pay"]', 
 
+        //Contact Section
+        contactTitle: {
+            selector: '//*[text()="Contact"]',
+            locateStrategy: 'xpath'
+        },
+        marketingEmail: '[href="mailto:marketing@cocofloss.com"]',
+        wholeSaleEmail: '[href="mailto:wholesale@cocofloss.com"]'
     }
 }
